@@ -1,6 +1,6 @@
 <?php
 
-namespace kouosl\sample;
+namespace kouosl\search;
 use Yii;
 use yii\filters\auth\CompositeAuth;
 use yii\filters\auth\HttpBasicAuth;
@@ -54,19 +54,19 @@ class Module extends \kouosl\base\Module
 
     public function registerTranslations()
     {
-        Yii::$app->i18n->translations['site/*'] = [
+        Yii::$app->i18n->translations['search/*'] = [
             'class' => 'yii\i18n\PhpMessageSource',
             'sourceLanguage' => 'en-US',
-            'basePath' => '@kouosl/sample/messages',
+            'basePath' => '@kouosl/search/messages',
             'fileMap' => [
-                'sample/sample' => 'sample.php',
+                'search/search' => 'search.php',
             ],
         ];
     }
 
     public static function t($category, $message, $params = [], $language = null)
     {
-        return Yii::t('sample/' . $category, $message, $params, $language);
+        return Yii::t('search/' . $category, $message, $params, $language);
     }
 
     public static function initRules(){
@@ -75,7 +75,7 @@ class Module extends \kouosl\base\Module
             [
                 'class' => 'yii\rest\UrlRule',
                 'controller' => [
-                    'sample/samples',
+                    'search/search',
                 ],
                 'tokens' => [
                     '{id}' => '<id:\\w+>'
