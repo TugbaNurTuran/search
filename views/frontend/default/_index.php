@@ -6,7 +6,7 @@ $this->title = 'Index Sample';
 $data['title'] = Html::encode($this->title);
 $this->params['breadcrumbs'][] = $this->title;
 
-
+echo "test";
 Portlet::begin(['title' => $this->title,'subTitle' => 'samples data','icon' => 'glyphicon glyphicon-cog']);
 
 echo $this->render('index');

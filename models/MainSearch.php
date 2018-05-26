@@ -5,11 +5,12 @@ namespace kouosl\search\models;
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
+use kouosl\search\models\Main;
 
 /**
- * SearchSearch represents the model behind the search form about `app\modules\search\models\Search`.
+ * MainSearch represents the model behind the search form of `kouosl\search\models\Main`.
  */
-class SearchSearch extends Search
+class MainSearch extends Main
 {
     /**
      * @inheritdoc
@@ -17,8 +18,8 @@ class SearchSearch extends Search
     public function rules()
     {
         return [
-            [['id'], 'integer'],
-            [['title', 'description'], 'safe'],
+            [['keywordID'], 'integer'],
+            [['keyword'], 'safe'],
         ];
     }
 
@@ -40,7 +41,9 @@ class SearchSearch extends Search
      */
     public function search($params)
     {
-        $query = Search::find();
+        $query = Main::find();
+
+        // add conditions that should always apply here
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
@@ -54,12 +57,12 @@ class SearchSearch extends Search
             return $dataProvider;
         }
 
+        // grid filtering conditions
         $query->andFilterWhere([
-            'id' => $this->id,
+            'keywordID' => $this->keywordID,
         ]);
 
-        $query->andFilterWhere(['like', 'title', $this->title])
-            ->andFilterWhere(['like', 'description', $this->description]);
+        $query->andFilterWhere(['like', 'keyword', $this->keyword]);
 
         return $dataProvider;
     }
